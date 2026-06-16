@@ -1,0 +1,624 @@
+{
+  "timestamp": "2026-06-14T16:28:37.654457",
+  "models": [
+    "granite4:latest",
+    "mistral:latest",
+    "deepseek-r1:8b",
+    "granite4.1:8b",
+    "devstral-small-2"
+  ],
+  "runs_per_model": 3,
+  "prompt": "Write a Python script called transformer.py that converts between JSON and YAML.\n\nCLI interface:\n  python transformer.py <input_file> --to <format> [--indent <n>]\n\nRules:\n- <input_file>: path to a .json or .yaml file\n- --to yaml  \u2192 read input, print YAML to stdout\n- --to json  \u2192 read input, print JSON to stdout\n- --indent <n>: optional integer; controls indentation for output\n- For any unknown --to value (e.g. --to xml): print an error to stderr and exit with a non-zero exit code\n- Never write any output file; print only to stdout\n- Dependencies allowed: Python standard library + PyYAML (import yaml)\n\nOutput ONLY the complete, runnable Python code. No explanation, no markdown fences.",
+  "results": [
+    {
+      "model": "granite4:latest",
+      "run": 1,
+      "error": null,
+      "tests": [
+        {
+          "id": "T1",
+          "name": "JSON \u2192 YAML (flat)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 55
+        },
+        {
+          "id": "T2",
+          "name": "YAML \u2192 JSON (flat)",
+          "passed": false,
+          "reason": "Exit 1: Traceback (most recent call last):\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/granite4-latest_run1.py\", line 34, in <module>\n    main()\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/granite4-latest_run1.py\", line 25, in main\n    data = json.load(f)\n  File \"/Users/peter/.pyenv/versions/3.9.1/lib/python3.9/json/__init__.py\", line 293, in load\n    return loads(fp.read(),\n  File \"/Users/peter/.pyenv/versions/3.9.1/lib/python3.9/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n  File \"/Users/peter/.pyenv/versions/3.9.1/lib/python3.9/json/decoder.py\", line 337, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n  File \"/Users/peter/.pyenv/versions/3.9.1/lib/python3.9/json/decoder.py\", line 355, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+          "duration_ms": 37
+        },
+        {
+          "id": "T3",
+          "name": "JSON \u2192 YAML (nested)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 35
+        },
+        {
+          "id": "T4",
+          "name": "JSON \u2192 YAML (pretty, indented)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 35
+        },
+        {
+          "id": "T5",
+          "name": "YAML \u2192 JSON (pretty)",
+          "passed": false,
+          "reason": "Exit 1: Traceback (most recent call last):\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/granite4-latest_run1.py\", line 34, in <module>\n    main()\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/granite4-latest_run1.py\", line 25, in main\n    data = json.load(f)\n  File \"/Users/peter/.pyenv/versions/3.9.1/lib/python3.9/json/__init__.py\", line 293, in load\n    return loads(fp.read(),\n  File \"/Users/peter/.pyenv/versions/3.9.1/lib/python3.9/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n  File \"/Users/peter/.pyenv/versions/3.9.1/lib/python3.9/json/decoder.py\", line 337, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n  File \"/Users/peter/.pyenv/versions/3.9.1/lib/python3.9/json/decoder.py\", line 355, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+          "duration_ms": 38
+        },
+        {
+          "id": "T6",
+          "name": "Onbekend formaat \u2192 foutmelding",
+          "passed": true,
+          "reason": "OK \u2013 exit code != 0",
+          "duration_ms": 40
+        }
+      ],
+      "passed": 4,
+      "total": 6,
+      "tokens_per_sec": 49.96,
+      "total_time_s": 9.88,
+      "output_tokens": 238,
+      "prompt_tokens": 175
+    },
+    {
+      "model": "granite4:latest",
+      "run": 2,
+      "error": null,
+      "tests": [
+        {
+          "id": "T1",
+          "name": "JSON \u2192 YAML (flat)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 51
+        },
+        {
+          "id": "T2",
+          "name": "YAML \u2192 JSON (flat)",
+          "passed": false,
+          "reason": "Exit 1: Error reading or parsing the file: Expecting value: line 1 column 1 (char 0)",
+          "duration_ms": 40
+        },
+        {
+          "id": "T3",
+          "name": "JSON \u2192 YAML (nested)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 42
+        },
+        {
+          "id": "T4",
+          "name": "JSON \u2192 YAML (pretty, indented)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 41
+        },
+        {
+          "id": "T5",
+          "name": "YAML \u2192 JSON (pretty)",
+          "passed": false,
+          "reason": "Exit 1: Error reading or parsing the file: Expecting value: line 1 column 1 (char 0)",
+          "duration_ms": 44
+        },
+        {
+          "id": "T6",
+          "name": "Onbekend formaat \u2192 foutmelding",
+          "passed": false,
+          "reason": "Verwacht fout, maar rc=0",
+          "duration_ms": 41
+        }
+      ],
+      "passed": 3,
+      "total": 6,
+      "tokens_per_sec": 49.52,
+      "total_time_s": 5.99,
+      "output_tokens": 288,
+      "prompt_tokens": 175
+    },
+    {
+      "model": "granite4:latest",
+      "run": 3,
+      "error": null,
+      "tests": [
+        {
+          "id": "T1",
+          "name": "JSON \u2192 YAML (flat)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 49
+        },
+        {
+          "id": "T2",
+          "name": "YAML \u2192 JSON (flat)",
+          "passed": false,
+          "reason": "Exit 1: Traceback (most recent call last):\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/granite4-latest_run3.py\", line 42, in <module>\n    main()\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/granite4-latest_run3.py\", line 30, in main\n    data = load_yaml(f, pure=True) if path.suffix == '.yaml' else json.load(f)\nTypeError: safe_load() got an unexpected keyword argument 'pure'",
+          "duration_ms": 38
+        },
+        {
+          "id": "T3",
+          "name": "JSON \u2192 YAML (nested)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 37
+        },
+        {
+          "id": "T4",
+          "name": "JSON \u2192 YAML (pretty, indented)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 36
+        },
+        {
+          "id": "T5",
+          "name": "YAML \u2192 JSON (pretty)",
+          "passed": false,
+          "reason": "Exit 1: Traceback (most recent call last):\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/granite4-latest_run3.py\", line 42, in <module>\n    main()\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/granite4-latest_run3.py\", line 30, in main\n    data = load_yaml(f, pure=True) if path.suffix == '.yaml' else json.load(f)\nTypeError: safe_load() got an unexpected keyword argument 'pure'",
+          "duration_ms": 34
+        },
+        {
+          "id": "T6",
+          "name": "Onbekend formaat \u2192 foutmelding",
+          "passed": true,
+          "reason": "OK \u2013 exit code != 0",
+          "duration_ms": 36
+        }
+      ],
+      "passed": 4,
+      "total": 6,
+      "tokens_per_sec": 49.19,
+      "total_time_s": 7.16,
+      "output_tokens": 343,
+      "prompt_tokens": 175
+    },
+    {
+      "model": "mistral:latest",
+      "run": 1,
+      "error": null,
+      "tests": [
+        {
+          "id": "T1",
+          "name": "JSON \u2192 YAML (flat)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 56
+        },
+        {
+          "id": "T2",
+          "name": "YAML \u2192 JSON (flat)",
+          "passed": false,
+          "reason": "Exit 1: Traceback (most recent call last):\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/mistral-latest_run1.py\", line 35, in <module>\n    main()\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/mistral-latest_run1.py\", line 27, in main\n    data = yaml_load(open(args.input_file), Loader=FullLoader)\nTypeError: safe_load() got an unexpected keyword argument 'Loader'",
+          "duration_ms": 35
+        },
+        {
+          "id": "T3",
+          "name": "JSON \u2192 YAML (nested)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 33
+        },
+        {
+          "id": "T4",
+          "name": "JSON \u2192 YAML (pretty, indented)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 33
+        },
+        {
+          "id": "T5",
+          "name": "YAML \u2192 JSON (pretty)",
+          "passed": false,
+          "reason": "Exit 1: Traceback (most recent call last):\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/mistral-latest_run1.py\", line 35, in <module>\n    main()\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/mistral-latest_run1.py\", line 27, in main\n    data = yaml_load(open(args.input_file), Loader=FullLoader)\nTypeError: safe_load() got an unexpected keyword argument 'Loader'",
+          "duration_ms": 32
+        },
+        {
+          "id": "T6",
+          "name": "Onbekend formaat \u2192 foutmelding",
+          "passed": true,
+          "reason": "OK \u2013 exit code != 0",
+          "duration_ms": 32
+        }
+      ],
+      "passed": 4,
+      "total": 6,
+      "tokens_per_sec": 25.93,
+      "total_time_s": 22.61,
+      "output_tokens": 488,
+      "prompt_tokens": 209
+    },
+    {
+      "model": "mistral:latest",
+      "run": 2,
+      "error": null,
+      "tests": [
+        {
+          "id": "T1",
+          "name": "JSON \u2192 YAML (flat)",
+          "passed": false,
+          "reason": "Exit 1: Traceback (most recent call last):\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/mistral-latest_run2.py\", line 37, in <module>\n    dump_output(data, args.to)\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/mistral-latest_run2.py\", line 20, in dump_output\n    print(yaml.safe_dump(data, default_flow_style=False, indent=(int(args['indent']) if args['indent'] else None)))\nTypeError: 'Namespace' object is not subscriptable",
+          "duration_ms": 56
+        },
+        {
+          "id": "T2",
+          "name": "YAML \u2192 JSON (flat)",
+          "passed": false,
+          "reason": "Exit 1: Traceback (most recent call last):\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/mistral-latest_run2.py\", line 37, in <module>\n    dump_output(data, args.to)\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/mistral-latest_run2.py\", line 18, in dump_output\n    print(json.dumps(data, indent=(4 if args['indent'] else None)))\nTypeError: 'Namespace' object is not subscriptable",
+          "duration_ms": 34
+        },
+        {
+          "id": "T3",
+          "name": "JSON \u2192 YAML (nested)",
+          "passed": false,
+          "reason": "Exit 1: Traceback (most recent call last):\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/mistral-latest_run2.py\", line 37, in <module>\n    dump_output(data, args.to)\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/mistral-latest_run2.py\", line 20, in dump_output\n    print(yaml.safe_dump(data, default_flow_style=False, indent=(int(args['indent']) if args['indent'] else None)))\nTypeError: 'Namespace' object is not subscriptable",
+          "duration_ms": 32
+        },
+        {
+          "id": "T4",
+          "name": "JSON \u2192 YAML (pretty, indented)",
+          "passed": false,
+          "reason": "Exit 1: Traceback (most recent call last):\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/mistral-latest_run2.py\", line 37, in <module>\n    dump_output(data, args.to)\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/mistral-latest_run2.py\", line 20, in dump_output\n    print(yaml.safe_dump(data, default_flow_style=False, indent=(int(args['indent']) if args['indent'] else None)))\nTypeError: 'Namespace' object is not subscriptable",
+          "duration_ms": 32
+        },
+        {
+          "id": "T5",
+          "name": "YAML \u2192 JSON (pretty)",
+          "passed": false,
+          "reason": "Exit 1: Traceback (most recent call last):\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/mistral-latest_run2.py\", line 37, in <module>\n    dump_output(data, args.to)\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/mistral-latest_run2.py\", line 18, in dump_output\n    print(json.dumps(data, indent=(4 if args['indent'] else None)))\nTypeError: 'Namespace' object is not subscriptable",
+          "duration_ms": 32
+        },
+        {
+          "id": "T6",
+          "name": "Onbekend formaat \u2192 foutmelding",
+          "passed": true,
+          "reason": "OK \u2013 exit code != 0",
+          "duration_ms": 33
+        }
+      ],
+      "passed": 1,
+      "total": 6,
+      "tokens_per_sec": 25.92,
+      "total_time_s": 19.83,
+      "output_tokens": 511,
+      "prompt_tokens": 209
+    },
+    {
+      "model": "mistral:latest",
+      "run": 3,
+      "error": null,
+      "tests": [
+        {
+          "id": "T1",
+          "name": "JSON \u2192 YAML (flat)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 54
+        },
+        {
+          "id": "T2",
+          "name": "YAML \u2192 JSON (flat)",
+          "passed": false,
+          "reason": "Exit 1: Traceback (most recent call last):\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/mistral-latest_run3.py\", line 37, in <module>\n    data = load_json(input_stream)\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/mistral-latest_run3.py\", line 15, in load_json\n    return json.loads(stream)\n  File \"/Users/peter/.pyenv/versions/3.9.1/lib/python3.9/json/__init__.py\", line 339, in loads\n    raise TypeError(f'the JSON object must be str, bytes or bytearray, '\nTypeError: the JSON object must be str, bytes or bytearray, not TextIOWrapper",
+          "duration_ms": 39
+        },
+        {
+          "id": "T3",
+          "name": "JSON \u2192 YAML (nested)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 36
+        },
+        {
+          "id": "T4",
+          "name": "JSON \u2192 YAML (pretty, indented)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 36
+        },
+        {
+          "id": "T5",
+          "name": "YAML \u2192 JSON (pretty)",
+          "passed": false,
+          "reason": "Exit 1: Traceback (most recent call last):\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/mistral-latest_run3.py\", line 37, in <module>\n    data = load_json(input_stream)\n  File \"/Users/peter/Documents/DocsMBPPve/apps/2026/local-model-coding/results/code/mistral-latest_run3.py\", line 15, in load_json\n    return json.loads(stream)\n  File \"/Users/peter/.pyenv/versions/3.9.1/lib/python3.9/json/__init__.py\", line 339, in loads\n    raise TypeError(f'the JSON object must be str, bytes or bytearray, '\nTypeError: the JSON object must be str, bytes or bytearray, not TextIOWrapper",
+          "duration_ms": 34
+        },
+        {
+          "id": "T6",
+          "name": "Onbekend formaat \u2192 foutmelding",
+          "passed": true,
+          "reason": "OK \u2013 exit code != 0",
+          "duration_ms": 34
+        }
+      ],
+      "passed": 4,
+      "total": 6,
+      "tokens_per_sec": 25.9,
+      "total_time_s": 20.47,
+      "output_tokens": 527,
+      "prompt_tokens": 209
+    },
+    {
+      "model": "deepseek-r1:8b",
+      "run": 1,
+      "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)",
+      "tests": [],
+      "passed": 0,
+      "total": 6,
+      "tokens_per_sec": 0,
+      "total_time_s": 0,
+      "output_tokens": 0,
+      "prompt_tokens": 0
+    },
+    {
+      "model": "deepseek-r1:8b",
+      "run": 2,
+      "error": null,
+      "tests": [
+        {
+          "id": "T1",
+          "name": "JSON \u2192 YAML (flat)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 72
+        },
+        {
+          "id": "T2",
+          "name": "YAML \u2192 JSON (flat)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 35
+        },
+        {
+          "id": "T3",
+          "name": "JSON \u2192 YAML (nested)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 37
+        },
+        {
+          "id": "T4",
+          "name": "JSON \u2192 YAML (pretty, indented)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 36
+        },
+        {
+          "id": "T5",
+          "name": "YAML \u2192 JSON (pretty)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 35
+        },
+        {
+          "id": "T6",
+          "name": "Onbekend formaat \u2192 foutmelding",
+          "passed": true,
+          "reason": "OK \u2013 exit code != 0",
+          "duration_ms": 36
+        }
+      ],
+      "passed": 6,
+      "total": 6,
+      "tokens_per_sec": 20.01,
+      "total_time_s": 41.37,
+      "output_tokens": 802,
+      "prompt_tokens": 169
+    },
+    {
+      "model": "deepseek-r1:8b",
+      "run": 3,
+      "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)",
+      "tests": [],
+      "passed": 0,
+      "total": 6,
+      "tokens_per_sec": 0,
+      "total_time_s": 0,
+      "output_tokens": 0,
+      "prompt_tokens": 0
+    },
+    {
+      "model": "granite4.1:8b",
+      "run": 1,
+      "error": null,
+      "tests": [
+        {
+          "id": "T1",
+          "name": "JSON \u2192 YAML (flat)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 63
+        },
+        {
+          "id": "T2",
+          "name": "YAML \u2192 JSON (flat)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 42
+        },
+        {
+          "id": "T3",
+          "name": "JSON \u2192 YAML (nested)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 40
+        },
+        {
+          "id": "T4",
+          "name": "JSON \u2192 YAML (pretty, indented)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 42
+        },
+        {
+          "id": "T5",
+          "name": "YAML \u2192 JSON (pretty)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 39
+        },
+        {
+          "id": "T6",
+          "name": "Onbekend formaat \u2192 foutmelding",
+          "passed": true,
+          "reason": "OK \u2013 exit code != 0",
+          "duration_ms": 35
+        }
+      ],
+      "passed": 6,
+      "total": 6,
+      "tokens_per_sec": 18.9,
+      "total_time_s": 37.29,
+      "output_tokens": 411,
+      "prompt_tokens": 175
+    },
+    {
+      "model": "granite4.1:8b",
+      "run": 2,
+      "error": null,
+      "tests": [
+        {
+          "id": "T1",
+          "name": "JSON \u2192 YAML (flat)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 57
+        },
+        {
+          "id": "T2",
+          "name": "YAML \u2192 JSON (flat)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 39
+        },
+        {
+          "id": "T3",
+          "name": "JSON \u2192 YAML (nested)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 39
+        },
+        {
+          "id": "T4",
+          "name": "JSON \u2192 YAML (pretty, indented)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 40
+        },
+        {
+          "id": "T5",
+          "name": "YAML \u2192 JSON (pretty)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 45
+        },
+        {
+          "id": "T6",
+          "name": "Onbekend formaat \u2192 foutmelding",
+          "passed": true,
+          "reason": "OK \u2013 exit code != 0",
+          "duration_ms": 43
+        }
+      ],
+      "passed": 6,
+      "total": 6,
+      "tokens_per_sec": 16.75,
+      "total_time_s": 27.97,
+      "output_tokens": 464,
+      "prompt_tokens": 175
+    },
+    {
+      "model": "granite4.1:8b",
+      "run": 3,
+      "error": null,
+      "tests": [
+        {
+          "id": "T1",
+          "name": "JSON \u2192 YAML (flat)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 62
+        },
+        {
+          "id": "T2",
+          "name": "YAML \u2192 JSON (flat)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 36
+        },
+        {
+          "id": "T3",
+          "name": "JSON \u2192 YAML (nested)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 38
+        },
+        {
+          "id": "T4",
+          "name": "JSON \u2192 YAML (pretty, indented)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 39
+        },
+        {
+          "id": "T5",
+          "name": "YAML \u2192 JSON (pretty)",
+          "passed": true,
+          "reason": "OK",
+          "duration_ms": 35
+        },
+        {
+          "id": "T6",
+          "name": "Onbekend formaat \u2192 foutmelding",
+          "passed": true,
+          "reason": "OK \u2013 exit code != 0",
+          "duration_ms": 45
+        }
+      ],
+      "passed": 6,
+      "total": 6,
+      "tokens_per_sec": 16.04,
+      "total_time_s": 21.41,
+      "output_tokens": 338,
+      "prompt_tokens": 175
+    },
+    {
+      "model": "devstral-small-2",
+      "run": 1,
+      "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)",
+      "tests": [],
+      "passed": 0,
+      "total": 6,
+      "tokens_per_sec": 0,
+      "total_time_s": 0,
+      "output_tokens": 0,
+      "prompt_tokens": 0
+    },
+    {
+      "model": "devstral-small-2",
+      "run": 2,
+      "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)",
+      "tests": [],
+      "passed": 0,
+      "total": 6,
+      "tokens_per_sec": 0,
+      "total_time_s": 0,
+      "output_tokens": 0,
+      "prompt_tokens": 0
+    },
+    {
+      "model": "devstral-small-2",
+      "run": 3,
+      "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)",
+      "tests": [],
+      "passed": 0,
+      "total": 6,
+      "tokens_per_sec": 0,
+      "total_time_s": 0,
+      "output_tokens": 0,
+      "prompt_tokens": 0
+    }
+  ]
+}
