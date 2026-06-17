@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(ollama show *)"
+      "Bash(ollama show *)",
+      "Bash(python -c ' *)"
     ]
   }
 }

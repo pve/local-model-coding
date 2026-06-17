@@ -1,4 +1,11 @@
-# Can IBM's Granite 4.1 code? I ran it against local competitors to find out
+# Can IBM's Granite 4.1 code? I ran it against other local models to find out
+
+**Full transparency**: Except for some initial prompting, most of this blog and the research behind it was AI generated. I did check everything manually though.
+While I tried to include all relevant files in [this repo](https://github.com/pve/local-model-coding), reproducibility may be hampered by some of my older Claude contexts leaking into this process (e.g. about how opinionated I can be).
+
+Definitely reach out to comment.
+
+-- Mostly genAI text follows --
 
 I've been curious about how the newer IBM Granite models hold up for actual coding tasks, not just benchmarks designed to flatter them. So I set up a simple test on my M1 Pro MacBook: one identical prompt, five local models, six automated tests. Here's what happened.
 
